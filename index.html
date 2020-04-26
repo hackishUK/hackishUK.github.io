@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+  <title>AC Item List</title>
+  <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+  <link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css">
+  <link rel="stylesheet" href="main.css">
+</head>
+
+<body>
+
+  <form id="shopping-list">
+    <h2>Item List</h2>
+    <p>* If an item can stack, it will auto-stack to the max amount</p>
+    <p>* Total item count > 256 will have delays, ideally keep it under</p>
+    <table id="shopping-list-table" class="table table-condensed table-hover">
+      <thead>
+        <tr>
+          <th>Quantity</th>
+          <th>Item</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tr v-for="(item, index) in selectedItems">
+
+        <td>
+          <span v-show="!item.inEditMode">{{ item.quantity }}</span>
+          <input type="number" v-bind:placeholder="item.quantity" v-show="item.inEditMode" v-model="item.quantity" />
+        </td>
+
+        <td>
+          <img class='selected-list-image' v-bind:src="'https://acnhcdn.com/latest/FtrIcon/' + item.internalName + '.png'">
+          {{ item.itemName }}
+          <span v-show="item.diy" class="diy">DIY</span>
+        </td>
+
+        <td>
+          <button type="button" class="btn btn-success" v-show="item.inEditMode" @click="editItemComplete(item)"><i class="fa fa-save"></i> Save </button>
+          <button type="button" class="btn btn-info" v-show="!item.inEditMode" @click="editItem(item)"><i class="fa fa-edit"></i> Edit </button>
+          <button type="button" class="btn btn-danger" @click="removeItem(index)"><i class="fa fa-remove"></i> Delete </button>
+        </td>
+
+      </tr>
+    </table>
+    <h4>Add new item</h4>
+
+    <div class="add-item-container">
+
+      <div class="row">
+        <div class="col-md-6 form-group">
+          <label>Quantity</label>
+          <input type="number" max="99" min="1" v-model="quantity" class="checkbox" autofocus>
+        </div>
+        <div class="col-md-6 form-group">
+          <label>Item Title</label>
+          <!--                 <input type="text" v-model="itemName" class="checkbox"> -->
+
+          <div class="autocomplete">
+            <input type="text" v-model="itemName" class="checkbox" v-on:keyup="showDropdown = true">
+
+             <i v-if="showDropdown" @click="showDropdown = false" class="close-dropdown fa fa-close"></i>
+
+            <div class="autocomplete__dropdown" v-if="showDropdown">
+
+              <div v-for="(item, index) in filterNamesList" :key="index" class="dropdown_item" @click="populateName(item)">
+                 <img v-bind:src="'https://acnhcdn.com/latest/FtrIcon/' + item.internalName + '.png'">
+                 <div>
+
+                   {{item.itemName}}<span v-show="item.color"> ({{item.color}})</span>
+                    <span v-show="item.diy" class="diy">DIY</span>
+
+                 </div>
+
+              </div>
+
+            </div>
+
+          </div>
+
+        </div>
+
+        <button type="button" @click="addItem" class="btn btn-primary"><i class="fa fa-plus"></i> Add </button>
+
+        <div class="error-message">{{ errorMessage }}</div>
+      </div>
+
+    </div>
+  <!--   <div class="code-output">
+      <code>
+        <span v-for="(item, index) in selectedItems">
+          {{ item.itemName }}
+        </span>
+      <code>
+    </div> -->
+    <div class="totals">
+      {{ itemCount }} items <br>
+      {{ diyCount }} diys <br>
+      {{ trips }} trips, assuming 40 pockets and learn diy there
+    </div>
+
+    <div class="code-output">
+      <code><pre>{{ codeOutput }}</pre><code>
+    </div>
+
+
+  </form>
+
+
+  <script src="https://unpkg.com/vue@2.6.11/dist/vue.js"></script>
+  <script src="https://unpkg.com/vuex"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="app.obf.js"></script>
+
+</body>
+</html>
