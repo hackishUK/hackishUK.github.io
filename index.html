@@ -57,8 +57,6 @@
         </div>
         <div class="col-md-6 form-group">
           <label>Item Title</label>
-          <!--                 <input type="text" v-model="itemName" class="checkbox"> -->
-
           <div class="autocomplete">
             <input type="text" v-model="itemName" class="checkbox" v-on:keyup="showDropdown = true">
 
@@ -89,13 +87,6 @@
       </div>
 
     </div>
-  <!--   <div class="code-output">
-      <code>
-        <span v-for="(item, index) in selectedItems">
-          {{ item.itemName }}
-        </span>
-      <code>
-    </div> -->
     <div class="totals">
       {{ itemCount }} total items (40 per order) <br>
       {{ diyCount }} DIYs (20 addtl. allowed to make total 60) <br>
@@ -103,7 +94,7 @@
     </div>
 
     <div class="code-output">
-      <code><pre>Send to orders: {{ codeOutput }}</pre><code>
+      <code><pre>Send this code: {{ codeOutput }}</pre><code>
     </div>
 
 
