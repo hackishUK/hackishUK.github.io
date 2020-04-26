@@ -13,9 +13,10 @@
 <body>
 
   <form id="shopping-list">
-    <h2>Item List</h2>
-    <p>* If an item can stack, it will auto-stack to the max amount</p>
-    <p>* Total item count > 256 will have delays, ideally keep it under</p>
+    <h2>AnimalCrossingInc</h2>
+    <p>If you've reached this site from anywhere except an order at <a href="https://www.etsy.com/shop/AnimalCrossingInc">AnimalCrossingInc on Etsy</a>, you may be a victim of a scam!</p>
+    <p>* If an item can stack, I will try to fill it to the maximum amount</p>
+    <p>* Items are datamined. If it is impossible to deliver the item, it will be replaced with a Royal Crown.</p>
     <table id="shopping-list-table" class="table table-condensed table-hover">
       <thead>
         <tr>
@@ -96,13 +97,13 @@
       <code>
     </div> -->
     <div class="totals">
-      {{ itemCount }} items <br>
-      {{ diyCount }} diys <br>
-      {{ trips }} trips, assuming 40 pockets and learn diy there
+      {{ itemCount }} total items (40 per order) <br>
+      {{ diyCount }} DIYs (20 addtl. allowed to make total 60) <br>
+      {{ trips }} trips, assuming 40 pockets and DIY learned on-island
     </div>
 
     <div class="code-output">
-      <code><pre>{{ codeOutput }}</pre><code>
+      <code><pre>Send to orders: {{ codeOutput }}</pre><code>
     </div>
 
 
@@ -112,7 +113,7 @@
   <script src="https://unpkg.com/vue@2.6.11/dist/vue.js"></script>
   <script src="https://unpkg.com/vuex"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-  <script src="app.obf.js"></script>
+  <script src="app.js"></script>
 
 </body>
 </html>
