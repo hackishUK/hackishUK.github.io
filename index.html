@@ -38,7 +38,7 @@
         <td>
           <img class='selected-list-image' v-bind:src="'https://acnhcdn.com/latest/FtrIcon/' + item.internalName + '.png'">
           {{ item.itemName }}
-          <span v-show="item.diy" class="diy">DIY</span>
+          <span v-show="item.diy" class="diy">DIY</span><span v-show="item.fishbug" class="fishbug">Premium</span>
         </td>
 
         <td>
@@ -72,7 +72,7 @@
                  <div>
 
                    {{item.itemName}}<span v-show="item.color"> ({{item.color}})</span>
-                    <span v-show="item.diy" class="diy">DIY</span>
+                    <span v-show="item.diy" class="diy">DIY</span><span v-show="item.fishbug" class="fishbug">Premium</span>
 
                  </div>
 
@@ -87,6 +87,7 @@
         <button type="button" @click="addItem" class="btn btn-primary"><i class="fa fa-plus"></i> Add </button>
 
         <div class="error-message">{{ errorMessage }}</div>
+        <span v-show="fishbugCount > 0" class="fishbug-status"><br>You have {{ fishbugCount }} Fish/Bug item(s) in your cart!<br>Please ensure this is allowed in your order type as they are not normally included, and I am the only seller with them available.<br>Contact lordbritishdn for upgrade details!<br><br></span>
       </div>
 
     </div>
