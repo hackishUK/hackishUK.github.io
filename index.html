@@ -97,10 +97,11 @@
       {{ trips }} trips needed if you learn all DIYs
     </div>
 
-    <p>Copy and paste the below code <strong>IN FULL</strong> to lordbritishdn, or your order cannot be completed:</p>
-    <div class="code-output">
-      <code><pre>{{ codeOutput }}</pre><code>
-    </div>
+    <p>Click copy below and send to lordbritishdn, or your order cannot be completed:</p>
+    <input type="hidden" id="codeToCopy" v-model="codeOutput">
+    <span class="btn btn-info text-white copy-btn" @click.stop.prevent="copyToClipboard">
+      Copy to clipboard
+    </span>
 
 
   </form>
@@ -109,7 +110,7 @@
   <script src="https://unpkg.com/vue@2.6.11/dist/vue.js"></script>
   <script src="https://unpkg.com/vuex"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-  <script src="app.obf.js"></script>
+  <script src="app.js"></script>
 
 </body>
 </html>
