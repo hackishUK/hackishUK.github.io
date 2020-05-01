@@ -62,6 +62,7 @@ var vm = new Vue({
         this.itemCount = itemCountIN;
 
         this.diyCount = this.selectedItems.filter((item) => item.diy === true).length;
+        this.fishbugCount = this.selectedItems.filter((item) => item.fishbug === true).length;
         this.trips = Math.ceil((this.itemCount - this.diyCount)/40);
       },
       clearQuantity: function () {
@@ -117,6 +118,7 @@ var vm = new Vue({
         }
         this.diy = item.diy;
         this.hex = item.hex;
+        this.fishbug = item.fishbug;
         this.internalName = item.internalName;
         this.showDropdown = false;
       },
