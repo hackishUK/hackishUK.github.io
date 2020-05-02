@@ -1,3 +1,26 @@
+
+@mixin breakpoint($class) {
+  @if $class == small {
+    @media (max-width: 39.9em) { @content; }
+  }
+
+  @else if $class == medium {
+    @media (min-width: 40em) { @content; }
+  }
+
+  @else if $class == large {
+    @media (min-width: 64em) { @content; }
+  }
+
+  @else if $class == xlarge {
+    @media (min-width: 90em) { @content; }
+  }
+
+  @else {
+    @warn "Breakpoint mixin supports: small, medium, large, xlarge";
+  }
+}
+
 body {
   padding: 2%;
   font-family: 'Lato', sans-serif;
@@ -8,7 +31,7 @@ h1,h2,h3,h4,h5,h6 {
 }
 
 p {
-  color:#999;
+  color: #999;
   font-size:.8em;
 }
 
@@ -24,17 +47,71 @@ label {
 
 .add-item-container {
   max-width: 650px;
+  background-color: #eee;
+  padding: 15px;
+  margin-bottom: 2rem;
 }
 
-#shopping-list-table{
+#saved-message {
+  color: #28a745;
+  margin-left: 0.5rem;
+  font-size: .8rem;
+}
+
+.output {
+  margin-top: 2rem;
+}
+
+#shopping-list {
+  margin-bottom: 5rem;
+}
+
+#shopping-list-table {
   table-layout: fixed;
   width: 1000px;
   max-width: 100%;
   vertical-align: middle;
   margin-bottom: 3rem;
+  font-size: 0.8rem;
+
+  .btn {
+    margin-bottom: 5px;
+  }
+
+  input {
+    max-width: 100%;
+  }
+
+  td {
+    vertical-align: middle;
+  }
+
+  img {
+    max-width: 40px;
+    max-height: 40px;
+  }
+
+  .actions {
+    width: 100px;
+  }
+
+  @include breakpoint(medium) {
+    font-size: 1rem;
+
+    img {
+      max-width: 50px;
+      max-height: 50px;
+      margin-right: 0.5rem;
+    }
+
+    .actions {
+      width: 20%;
+    }
+  }
 }
 
-button {
+
+#shopping-list-table button {
   margin-left: 2%;
 }
 
@@ -109,9 +186,23 @@ button {
 }
 
 .totals {
-  background-color: #eee;
-  padding: 15px;
-  font-size: .7rem;
-  width: 300px;
-  margin: 2rem 0;
+  background-color: #333;
+  color: #fff;
+  padding: 5px 20px;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  font-size: .9rem;
+
+  total {
+    margin: 5px;
+  }
+
+  @include breakpoint(large) {
+    flex-wrap: nowrap;
+  }
 }

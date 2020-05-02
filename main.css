@@ -8,11 +8,31 @@ input[type=text], input[type=number] { padding: 3px 10px; }
 
 label { font-weight: 700; font-size: 14px; display: block; }
 
-.add-item-container { max-width: 650px; }
+.add-item-container { max-width: 650px; background-color: #eee; padding: 15px; margin-bottom: 2rem; }
 
-#shopping-list-table { table-layout: fixed; width: 1000px; max-width: 100%; vertical-align: middle; margin-bottom: 3rem; }
+#saved-message { color: #28a745; margin-left: 0.5rem; font-size: .8rem; }
 
-button { margin-left: 2%; }
+.output { margin-top: 2rem; }
+
+#shopping-list { margin-bottom: 5rem; }
+
+#shopping-list-table { table-layout: fixed; width: 1000px; max-width: 100%; vertical-align: middle; margin-bottom: 3rem; font-size: 0.8rem; }
+
+#shopping-list-table .btn { margin-bottom: 5px; }
+
+#shopping-list-table input { max-width: 100%; }
+
+#shopping-list-table td { vertical-align: middle; }
+
+#shopping-list-table img { max-width: 40px; max-height: 40px; }
+
+#shopping-list-table .actions { width: 100px; }
+
+@media (min-width: 40em) { #shopping-list-table { font-size: 1rem; }
+  #shopping-list-table img { max-width: 50px; max-height: 50px; margin-right: 0.5rem; }
+  #shopping-list-table .actions { width: 20%; } }
+
+#shopping-list-table button { margin-left: 2%; }
 
 .autocomplete .autocomplete__dropdown { position: absolute; background-color: #eee; top: 103%; left: 0; width: 400px; border: 1px solid #ccc; max-height: 250px; overflow: hidden; overflow-y: scroll; }
 
@@ -34,4 +54,8 @@ button { margin-left: 2%; }
 
 .selected-list-image { max-width: 50px; max-height: 50px; }
 
-.totals { background-color: #eee; padding: 15px; font-size: .7rem; width: 300px; margin: 2rem 0; }
+.totals { background-color: #333; color: #fff; padding: 5px 20px; position: fixed; bottom: 0; left: 0; width: 100%; display: flex; flex-wrap: wrap; justify-content: space-between; font-size: .9rem; }
+
+.totals total { margin: 5px; }
+
+@media (min-width: 64em) { .totals { flex-wrap: nowrap; } }

@@ -14,7 +14,9 @@ var vm = new Vue({
       inEditMode: false,
       itemCount: 0,
       diyCount: 0,
-      trips: 1
+      trips: 1,
+      isSaved: false,
+      validItemSelected: false
   },
   computed: {
     filterNamesList () {
@@ -25,6 +27,8 @@ var vm = new Vue({
   },
   methods: {
       addItem: function (){
+
+        if ( this.validItemSelected ) {
           var quantityIN = this.quantity;
           var hexIN = this.hex;
           var diyIN = this.diy;
@@ -52,6 +56,10 @@ var vm = new Vue({
             this.errorMessage = 'Check your quantity!';
           }
           this.calculateTotals();
+          this.validItemSelected = false;
+          this.saveList();
+        }
+
       },
       calculateTotals: function () {
         var itemCountIN = 0;
@@ -79,6 +87,7 @@ var vm = new Vue({
           this.selectedItems.splice(index, 1);
           this.calculateTotals();
           this.updateOutput();
+          this.saveList();
       },
       editItem:function (item){
         item.inEditMode = true;
@@ -87,6 +96,7 @@ var vm = new Vue({
         item.inEditMode = false;
         this.calculateTotals();
         this.updateOutput();
+        this.saveList();
       },
       updateOutput: function() {
         if (this.selectedItems.length == 0) {
@@ -117,10 +127,11 @@ var vm = new Vue({
           this.itemName = item.itemName;
         }
         this.diy = item.diy;
-        this.hex = item.hex;
         this.fishbug = item.fishbug;
+        this.hex = item.hex;
         this.internalName = item.internalName;
         this.showDropdown = false;
+        this.validItemSelected = true;
       },
       getdataApi: function() {
         $.getJSON(atob(atob("THk5eVlYY3VaMmwwYUhWaWRYTmxjbU52Ym5SbGJuUXVZMjl0TDJoaFkydHBjMmhWU3k5aFl5MXBkR1Z0Y3k5dFlYTjBaWEl2YVhSbGJYTXRaR1YyTG1wemIyND0")), ( data )=> {
@@ -144,11 +155,23 @@ var vm = new Vue({
         codeToCopy.setAttribute('type', 'hidden');
         window.getSelection().removeAllRanges();
       },
+      saveList: function() {
+        const parsed = JSON.stringify(this.selectedItems);
+        localStorage.setItem('selectedItems', parsed);
+      }
 
   },
   mounted: function() {
     this.getdataApi();
+
+    if (localStorage.getItem('selectedItems')) {
+      try {
+        this.selectedItems = JSON.parse(localStorage.getItem('selectedItems'));
+      } catch(e) {
+        localStorage.removeItem('selectedItems');
+      }
+    }
+    this.calculateTotals();
     this.updateOutput();
-    console.log('mounted');
   }
 });
