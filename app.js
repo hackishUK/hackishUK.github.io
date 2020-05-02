@@ -7,6 +7,7 @@ var vm = new Vue({
       diy: false,
       hex: '',
       codeOutput: '',
+      codeOutput2: '',
       errorMessage: '',
       showDropdown: false,
       selectedItems: [],
@@ -100,7 +101,7 @@ var vm = new Vue({
       },
       updateOutput: function() {
         if (this.selectedItems.length == 0) {
-          this.codeOutput = 'Add items to your list!';
+          this.codeOutput2 = 'Add items to your list!';
           return;
         }
         var tempCodeOutput ='';
@@ -118,6 +119,7 @@ var vm = new Vue({
         }
         tempCodeOutput = '`' + tempCodeOutput + '`';
         this.codeOutput = tempCodeOutput;
+        this.codeOutput2 = tempCodeOutput;
       },
       populateName: function(item) {
         if (typeof item.color !== 'undefined') {
