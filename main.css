@@ -34,7 +34,7 @@ label { font-weight: 700; font-size: 14px; display: block; }
 
 #shopping-list-table button { margin-left: 2%; }
 
-.autocomplete .autocomplete__dropdown { position: absolute; background-color: #eee; top: 103%; left: 0; width: 400px; border: 1px solid #ccc; max-height: 250px; overflow: hidden; overflow-y: scroll; }
+.autocomplete .autocomplete__dropdown { z-index: 20; position: absolute; background-color: #eee; top: 103%; left: 0; width: 400px; border: 1px solid #ccc; max-height: 250px; overflow: hidden; overflow-y: scroll; }
 
 .autocomplete .autocomplete__dropdown img { max-width: 80px; max-height: 40px; margin-right: 1rem; }
 
