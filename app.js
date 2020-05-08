@@ -23,7 +23,7 @@ var vm = new Vue({
     filterNamesList () {
       return this.itemsList.filter((item) => {
         return item.itemName.toLowerCase().replace(/-/g, '').replace(/\s/g, '').includes(this.itemName.toLowerCase().replace(/-/g, '').replace(/\s/g, ''));
-      }).slice(0,100);
+      }).slice(0,1000);
     }
   },
   methods: {
